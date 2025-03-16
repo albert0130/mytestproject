@@ -13,7 +13,7 @@ function App() {
   const [sortitem, setSortitem] = useState(0);
 
   const getdata = async () => {
-    const response = await axios.get('/gettopcryptos');
+    const response = await axios.get('/get');
     console.log(response.data);
     setCryptos(response.data);
   }

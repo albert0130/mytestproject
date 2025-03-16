@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = 5000;
+const port = 9999;
 
 const axios = require("axios")
 
@@ -16,14 +16,8 @@ const getTopCryptos = async () => {
                     sparkline: false,
                 },
             });
-        
-        const topCryptos = response.data;
-
-        console.log('Top 20 Cryptocurrencies: ');
-        topCryptos.forEach((crypto, index) => {
-            console.log(`${index + 1}.${crypto.name} (${crypto.symbol.toUpperCase()}):$${crypto.current_price}`);
-        });
-        return topCryptos;
+    
+        return response.data;
         
     } catch (error) {
     console.error('Error fetching data from CoinGecko: ', error);
@@ -32,7 +26,7 @@ const getTopCryptos = async () => {
 
 app.use(express.static('./public'))
 
-app.get('/gettopcryptos', async (req, res) => {
+app.get('/get', async (req, res) => {
     const response = await getTopCryptos();
     res.json(response);
 });
